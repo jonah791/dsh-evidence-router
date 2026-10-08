@@ -1,0 +1,38 @@
+{
+  "name": "dsh-evidence-router",
+  "version": "0.1.0",
+  "description": "证据构建台账与充分性双判仪器：把「证据是否充分」从产生者自判拆成两个可分别复算的读数（kappa_self vs 独立覆盖 kappa_cov），冻结口径指纹并留痕，使「省了几轮」「够不够」这类结论可复算",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "docs"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/schemastery": "^3.18.1-rc.1",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "prepare": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "smoke": "node tests/apply-smoke.mjs",
+    "check": "npm run build && npm run test && npm run smoke",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}
