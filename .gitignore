@@ -2,3 +2,7 @@ node_modules/
 _smoke-store/
 *.log
 .DS_Store
+
+*.tsbuildinfo
+*.bak
+*.bak-*
