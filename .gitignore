@@ -6,3 +6,5 @@ _smoke-store/
 *.tsbuildinfo
 *.bak
 *.bak-*
+
+lib
