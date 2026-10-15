@@ -1,6 +1,40 @@
+<!--
+  DSH 插件生态公约声明（plugin-ecosystem-convention · 组合优先/声明清晰/兼容优先）
+  purpose: 证据构建台账与充分性双判仪器：把「证据是否充分」从产生者自判拆成两个可分别复算的读数（kappa_self vs 独立覆盖 kappa_cov），冻结口径指纹并留痕，使「省了几轮」「够不够」这类结论可复算
+  inject: ['tools']
+  tools: ev_open,ev_observe,ev_assess,ev_close,ev_report
+  runtime: host-only
+  envDeps: 见 README「配置」节
+  boundary: 见 README「设计要点」与「生效判据与回退」节
+  compat: cordis ^4.0.1 / dsh-tools >=0.1.0-rc.6
+-->
 # dsh-evidence-router
 
+<p align="center">
+  <a href="https://github.com/jonah791/dsh-evidence-router"><img src="https://img.shields.io/badge/version-0.1.0-blue" alt="version"></a>
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="license">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6" alt="TypeScript">
+  <img src="https://img.shields.io/badge/tests-13%20passed-brightgreen" alt="tests">
+</p>
+
 **证据构建台账 + 充分性双判仪器。** 它让「证据是否充分」这句话变得可复算。
+
+## 快速开始
+
+**1) 装依赖**（在目标 profile 的 `package.json` 加 link 依赖）：
+
+```jsonc
+"dsh-evidence-router": "link:E:/alice/self-plugins/dsh-evidence-router"
+```
+
+**2) 挂组合**：
+
+```yaml
+- id: dsh-evidence-router
+  name: dsh-evidence-router
+```
+
+**3) 30 秒验证**：`ev_open {task, slots}` → 应返回 sessionId + **口径指纹**（开题即冻结）
 
 ## 它解决什么
 
@@ -63,3 +97,11 @@ ev_close   { sessionId, outcome:"..." }
 若用弱仪器都能测出显著分歧，那说明充分性判定对判据的选择高度敏感——这是**下界**，不是上界。
 
 完整契约、边界与未决问题见 [`docs/semantic.md`](docs/semantic.md)。
+
+## 测试
+
+```bash
+cd self-plugins/dsh-evidence-router && npm test
+```
+
+**13 条用例**（跑一次得到）。
