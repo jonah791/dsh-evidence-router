@@ -237,6 +237,7 @@ export function apply(ctx: Context, config: Config): void {
 
   ctx.tools.register(defineTool({
     name: 'ev_open',
+    deferLoading: true,
     description:
       '开一次证据构建会话：声明任务与必需槽位（slots）。返回会话 id 与**口径指纹**。'
       + '口径一旦开题即冻结（槽位不可改；要改就重开一个新会话）。'
@@ -307,6 +308,7 @@ export function apply(ctx: Context, config: Config): void {
 
   ctx.tools.register(defineTool({
     name: 'ev_observe',
+    deferLoading: true,
     description:
       '登记一次证据操作及其返回（操作由你执行，本工具只记账）。'
       + '返回本轮的覆盖增量与缺口——这是决定「下一步还要找什么」的依据。',
@@ -386,6 +388,7 @@ export function apply(ctx: Context, config: Config): void {
 
   ctx.tools.register(defineTool({
     name: 'ev_assess',
+    deferLoading: true,
     description:
       '双判读数：你给出自判（kappa_self），本工具给出独立覆盖判定（kappa_cov），返回两者的关系。'
       + '四种关系：agree_sufficient（都够）/ agree_insufficient（都不够）/ '
@@ -477,6 +480,7 @@ export function apply(ctx: Context, config: Config): void {
 
   ctx.tools.register(defineTool({
     name: 'ev_close',
+    deferLoading: true,
     description:
       '收口一次证据构建会话，落一行完整读数（口径指纹、轮数、证据字符数、两判与分歧类型）。'
       + '若从未调用 ev_assess，会在读数里显式标 assessed=false（不默认有自判）。',
@@ -549,6 +553,7 @@ export function apply(ctx: Context, config: Config): void {
 
   ctx.tools.register(defineTool({
     name: 'ev_report',
+    deferLoading: true,
     description:
       '读数汇总：给 sessionId 返回该会话详情；省略则汇总全部会话——'
       + '含分歧率（premature_stop 占已判定会话之比）、平均轮数与平均证据字符数。',
